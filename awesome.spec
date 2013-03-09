@@ -1,13 +1,13 @@
 Name:		awesome
-Version:	3.4.14
-Release:	2%{?dist}
+Version:	3.5
+Release:	1%{?dist}
 Summary:	Highly configurable, framework window manager for X. Fast, light and extensible
 Group:		User Interface/Desktops
 # common/buffer.[ch]: BSD
 License:	GPLv2+ and BSD
 URL:		http://awesome.naquadah.org
 Source0:	http://awesome.naquadah.org/download/%{name}-%{version}.tar.xz
-Patch0:		awesome-3.4-libev-pkg-config.patch
+Patch0:		awesome-3.5-libev-pkg-config.patch
 
 BuildRequires:	cmake >= 2.8.0
 
@@ -18,6 +18,7 @@ BuildRequires:	gperf
 BuildRequires:	graphviz
 BuildRequires:	lua-devel
 BuildRequires:	luadoc
+BuildRequires:	lua-ldoc
 BuildRequires:	xmlto
 BuildRequires:	pkgconfig(xcb) >= 1.6
 BuildRequires:	pkgconfig(xcb-icccm) >= 0.3.8
@@ -42,10 +43,12 @@ BuildRequires:	pkgconfig(xcb-xtest)
 BuildRequires:	pkgconfig(xproto) >= 7.0.15
 BuildRequires:	pkgconfig(xcursor)
 BuildRequires:	pkgconfig(libev)
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	desktop-file-utils
 Requires:	startup-notification >= 0.10
 # terminal used in the default configuration
 Requires:	xterm
+Requires:	lua-lgi
 # optional but useful
 Requires:	rlwrap
 
@@ -96,7 +99,6 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 %config(noreplace) %{_sysconfdir}/xdg/%{name}/rc.lua
 %{_bindir}/awesome
 %{_bindir}/awesome-client
-%{_bindir}/awsetbg
 %{_datadir}/%{name}
 %{_mandir}/man?/*
 %{_mandir}/*/man1/*
@@ -109,6 +111,9 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 
 %changelog
+* Fri Mar 8 2013 Chad Versace <chad@chad-versace.us> - 3.5-1
+- Update to 3.5.
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.4.14-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
